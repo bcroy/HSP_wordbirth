@@ -228,6 +228,22 @@ for (wrd in words.fig3) {
 detach(env.fig3)
 rm(env.fig3)
 
+#### SI Figure 7: Word births ----
+
+quartz(width=8,height=4)
+ggplot(data=ddply(d,.(month=floor(aoa/30.3)), summarise, num.births=length(word)), 
+       aes(x=month,y=num.births)) + 
+  geom_bar(stat="identity",fill="#727272") + 
+  scale_x_continuous(breaks=seq(9,24,3)) +
+  xlab("Child age (months)") + ylab("Num word births") + 
+  ggtitle("Word births by month") + 
+  theme(panel.background=element_blank(),
+        panel.grid=element_blank(),
+        plot.background=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=16),
+        plot.title=element_text(size=18))
+
 #### SI Figure 9: Pairwise predictor correlation matrix ----
 
 vars <- c("s.cmu.phon","sln.freq.pre","s.uttlen.pre","srl.sp.KL","srl.temp.KL","srl.topic.KL")
